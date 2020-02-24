@@ -4,5 +4,5 @@
 *.pyw    text diff=python
 *.pyx    text diff=python
 *.pyz    text diff=python
-special-vendored-path/* linguist-vendored
+* linguist-vendored
 jquery.js linguist-vendored=false
