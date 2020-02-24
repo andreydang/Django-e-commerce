@@ -1,0 +1,56 @@
+*.py[cod]
+.venv
+*.swp
+.idea
+
+# C extensions
+*.so
+
+# Packages
+*.rpm
+*.deb
+*.changes
+*.egg
+*.egg-info
+dist
+build
+_build
+eggs
+parts
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+__pycache__
+
+# Installer logs
+pip-log.txt
+*.log
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+htmlcov
+
+out
+
+# Containers
+containers/*/scripts
+
+# tcpdump
+*.dump
+
+# macOS
+.DS_Store
