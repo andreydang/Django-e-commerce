@@ -1,7 +1,8 @@
 from django.http import Http404
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render, get_object_or_404
-
+from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import MultipleObjectsReturned
 # Create your views here.
 from .models import Product
 
@@ -41,8 +42,29 @@ def product_list_view(request):
     return render(request, "products/list.html", context)
 
 
+class ProductDetailSlugView(DetailView):
+    queryset = Product.objects.all()
+    template_name = 'products/detail.html'
+
+    def get_object(self, *args, **kwargs):
+        request = self.request
+        slug = self.kwargs.get('slug')
+        #instance = get_object_or_404(slug=slug, active=True)
+        try:
+            instance = Product.objects.get(slug=slug, active=True)
+        except ObjectDoesNotExist:
+            raise Http404("Not found")
+        except MultipleObjectsReturned:
+            qs = Product.objects.filter(slug=slug, active=True)
+            instance = qs.first()
+        except:
+            raise Http404("Hmmm")
+        return instance
+
+
 class ProductDetailView(DetailView):
     template_name = 'products/detail.html'
+    queryset = Product.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
