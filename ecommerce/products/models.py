@@ -57,6 +57,9 @@ class Product(models.Model):
     featured = models.BooleanField(default=False)  # +active
     active = models.BooleanField(default=False)
 
+    def get_absolute_url(self):
+        return "/products/{slug}/".format(slug=self.slug)
+
     def __str__(self):
         return self.title
 
